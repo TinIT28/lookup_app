@@ -26,8 +26,6 @@ async function bootstrap() {
         secure: true,
         httpOnly: true,
         sameSite: 'none',
-        path: '/',
-        domain: '.vercel.app',
       },
     }),
   );
