@@ -86,7 +86,7 @@ export class UserService {
 
     const options = {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      secure: req.protocol === 'https',
+      secure: true,
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
