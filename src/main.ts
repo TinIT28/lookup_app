@@ -7,12 +7,15 @@ import session = require('express-session');
 import passport = require('passport');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: true,
-  });
+  const corsOptions: CorsOptions = {
+    origin: 'https://lookup-app-frontend.vercel.app', // Replace this with your frontend's domain
+    credentials: true, // Allow cookies to be sent to the frontend
+  };
+  app.enableCors(corsOptions);
   app.use(
     session({
       secret: 'jfaejlfhsdhafddksf',
@@ -20,7 +23,6 @@ async function bootstrap() {
       resave: false,
       cookie: {
         maxAge: 60000,
-        httpOnly: true, // Recommended for added security
         secure: true, // Set to true if your application uses HTTPS
         sameSite: 'none', // Required for cross-site requests
       },
