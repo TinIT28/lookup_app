@@ -88,7 +88,7 @@ export class UserService {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       secure: true,
       httpOnly: true,
-      samesite: 'none',
+      samesite: 'strict',
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
