@@ -98,7 +98,6 @@ export class UserService {
         sameSite: 'none',
         secure: true,
         httpOnly: true,
-        domain: '.vercel.app',
       })
       .json({
         user,
