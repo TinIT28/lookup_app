@@ -22,9 +22,13 @@ async function bootstrap() {
       resave: false,
       cookie: {
         maxAge: 60000,
+        httpOnly: true, // Recommended for added security
+        secure: true, // Set to true if your application uses HTTPS
+        sameSite: 'none', // Required for cross-site requests
       },
     }),
   );
+
   app.use(bodyParser.json({ limit: '20mb' }));
   app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
   app.use(cookieParser());
