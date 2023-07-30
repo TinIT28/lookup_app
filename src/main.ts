@@ -15,7 +15,7 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'https://lookup-app-frontend.vercel.app'],
     allowedHeaders:
       'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
   app.use(
