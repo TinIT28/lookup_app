@@ -11,6 +11,7 @@ import { PassportModule } from '@nestjs/passport';
 import { PostModule } from './post/post.module';
 import { JwtService } from '@nestjs/jwt';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { CommentModule } from './comment/comment.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,6 +24,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     AuthModule,
     PostModule,
     CloudinaryModule,
+    CommentModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService, JwtService],
