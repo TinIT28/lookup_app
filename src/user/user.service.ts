@@ -98,7 +98,10 @@ export class UserService {
         sameSite: 'none',
         secure: true,
         httpOnly: true,
-        domain: 'lookup-app-frontend.vercel.app',
+        domain:
+          process.env.NODE_ENV === 'development'
+            ? '.localhost'
+            : '.lookup-app-frontend',
       })
       .json({
         user,
