@@ -8,7 +8,6 @@ import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { CommentService } from '../comment/comment.service';
 import { UserService } from '../user/user.service';
 import { CreateCommentDto } from '../comment/dto/create-comment-dto';
-import { PostGateway } from './post.gateway';
 
 @Injectable()
 export class PostService {
@@ -17,7 +16,6 @@ export class PostService {
         private cloudinaryService: CloudinaryService,
         private commentService: CommentService,
         private userService: UserService,
-        private postGateway: PostGateway
     ) { }
 
     async create(userId: string, post: CreatePostDto) {
@@ -27,7 +25,7 @@ export class PostService {
             if (newPost.images) {
                 newPost.images = (await this.cloudinaryService.convertImagesCloudinary(newPost.images));
             }
-            this.postGateway.handlePostCreated(newPost);
+            // this.postGateway.handlePostCreated(newPost);
             return newPost.save();
         } catch (error) {
             throw error
@@ -43,13 +41,13 @@ export class PostService {
         const posts = await this.postModel.find()
             .populate('user', 'name image')
             .sort({ createdAt: -1 });
-        this.postGateway.handleGetPost(posts);
+        // this.postGateway.handleGetPost(posts);
         return posts;
     }
 
     async getById(id: ObjectId): Promise<Posts> {
         const post = await this.postModel.findById(id).populate('comments', 'content').populate('user', 'name image');
-        this.postGateway.handleGetPostById(post)
+        // this.postGateway.handleGetPostById(post)
         return post;
     }
 
@@ -91,7 +89,7 @@ export class PostService {
                 const updatedPost = await foundPost.updateOne({
                     $push: { likes: userId },
                 });
-                this.postGateway.handlePostLiked(updatedPost);
+                // this.postGateway.handlePostLiked(updatedPost);
                 return updatedPost;
             } else {
                 throw Error('You already like post!')
@@ -115,7 +113,7 @@ export class PostService {
                         path: 'comments',
                         populate: 'user',
                     });
-                this.postGateway.handlePostDisliked(post);
+                // this.postGateway.handlePostDisliked(post);
                 return post;
             } else {
                 throw Error('You are already disliking this post!');
@@ -132,7 +130,7 @@ export class PostService {
             const updatedPost = await foundPost.updateOne({
                 $push: { comments: newComment._id }
             });
-            this.postGateway.handlePostAddComment(newComment);
+            // this.postGateway.handlePostAddComment(newComment);
             return newComment;
         } catch (error) {
             throw error

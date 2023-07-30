@@ -6,7 +6,6 @@ import { PostsSchema } from './schema/post.schema';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 import { CommentModule } from '../comment/comment.module';
 import { UserModule } from '../user/user.module';
-import { PostGateway } from './post.gateway';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ import { PostGateway } from './post.gateway';
     MongooseModule.forFeature([{ name: 'Posts', schema: PostsSchema }]),
   ],
   controllers: [PostController],
-  providers: [PostService, PostGateway],
+  providers: [PostService],
   exports: [PostService],
 })
 export class PostModule { }
