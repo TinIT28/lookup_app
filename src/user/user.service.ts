@@ -88,7 +88,8 @@ export class UserService {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       secure: true,
       httpOnly: true,
-      samesite: 'strict',
+      samesite: 'none',
+      domain: 'https://lookup-app-frontend.vercel.app',
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
