@@ -87,6 +87,7 @@ export class UserService {
     const options = {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       secure: true,
+      domain: 'https://lookup-app-frontend.vercel.app', // Replace with your actual domain
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
