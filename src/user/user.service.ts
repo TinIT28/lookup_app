@@ -89,7 +89,7 @@ export class UserService {
       samesite: 'none',
       secure: true,
       httpOnly: true,
-      domain: 'https://lookup-app-frontend.vercel.app',
+      domain: '.vercel.app',
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
