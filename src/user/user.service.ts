@@ -67,7 +67,7 @@ export class UserService {
     return user;
   }
 
-  async login(loginDto: LoginUserDto, res: Response, req: Request) {
+  async login(loginDto: LoginUserDto, res: Response) {
     const { email, password } = loginDto;
 
     const user = await this.validateUser(email, password);
@@ -87,7 +87,7 @@ export class UserService {
     const options = {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       secure: true,
-      samesite: 'none',
+      httpOnly: true,
     };
 
     res.status(200).cookie('jwt', jwt, options).json({
