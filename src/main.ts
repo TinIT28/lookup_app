@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as session from "express-session";
-import * as passport from 'passport';
-import * as cookieParser from 'cookie-parser';
-import * as bodyParser from 'body-parser';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { Server } from 'socket.io';
+import session = require('express-session');
+import passport = require('passport');
+import cookieParser = require('cookie-parser');
+import bodyParser = require('body-parser');
 
 
 async function bootstrap() {
