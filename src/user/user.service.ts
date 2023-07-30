@@ -90,7 +90,6 @@ export class UserService {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         sameSite: 'none',
         secure: true,
-        httpOnly: true,
         domain: '.vercel.app',
       })
       .json({
