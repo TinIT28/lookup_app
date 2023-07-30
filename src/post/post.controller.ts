@@ -17,6 +17,7 @@ import { UpdatePostDto } from './dto/update-post-dto';
 import { JwtGuard } from '../auth/utils/JwtGuard';
 import { UserService } from '../user/user.service';
 import { CreateCommentDto } from '../comment/dto/create-comment-dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('post')
 export class PostController {
@@ -25,7 +26,7 @@ export class PostController {
     private userService: UserService,
   ) {}
 
-  @UseGuards(JwtGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getAllPost(@Res() res: Response, @Request() req) {
     try {
