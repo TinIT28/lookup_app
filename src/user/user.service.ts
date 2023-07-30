@@ -88,8 +88,9 @@ export class UserService {
       .status(200)
       .cookie('jwt', jwt, {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-        sameSite: 'none',
+        httpOnly: true,
         secure: true,
+        domain: '.vercel.app',
       })
       .json({
         user,
