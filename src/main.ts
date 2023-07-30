@@ -11,7 +11,9 @@ import bodyParser = require('body-parser');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: "https://lookup-app-frontend.vercel.app/"
+  });
   app.use(session({
     secret: 'jfaejlfhsdhafddksf',
     saveUninitialized: false,

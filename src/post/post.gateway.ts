@@ -35,6 +35,4 @@ export class PostGateway {
     handlePostAddComment(comment: any) {
         this.server.emit('addComment', comment)
     }
-
-
 }
