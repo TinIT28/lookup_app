@@ -23,8 +23,6 @@ async function bootstrap() {
       resave: false,
       cookie: {
         maxAge: 60000,
-        secure: true, // Set to true if your application uses HTTPS
-        sameSite: 'none', // Required for cross-site requests
       },
     }),
   );
