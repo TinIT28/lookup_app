@@ -98,10 +98,6 @@ export class UserService {
         sameSite: 'none',
         secure: true,
         httpOnly: true,
-        domain:
-          process.env.NODE_ENV === 'development'
-            ? '.localhost'
-            : '.lookup-app-frontend',
       })
       .json({
         user,
