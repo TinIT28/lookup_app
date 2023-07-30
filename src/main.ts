@@ -26,6 +26,7 @@ async function bootstrap() {
         secure: true,
         httpOnly: true,
         sameSite: 'none',
+        domain: 'lookup-app-backend.vercel.app',
       },
     }),
   );
