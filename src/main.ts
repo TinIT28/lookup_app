@@ -17,6 +17,7 @@ async function bootstrap() {
       'https://provinces.open-api.vn',
     ],
     credentials: true,
+    methods: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
   });
   app.use(
     session({
