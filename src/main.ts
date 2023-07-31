@@ -7,18 +7,24 @@ import session = require('express-session');
 import passport = require('passport');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'https://lookup-app-frontend.vercel.app',
-      'https://provinces.open-api.vn',
-    ],
+    origin: ['https://lookup-app-frontend.vercel.app'],
     credentials: true,
     methods: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
   });
+
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://provinces.open-api.vn',
+      changeOrigin: true,
+    }),
+  );
+
   app.use(
     session({
       secret: 'jfaejlfhsdhafddksf',
