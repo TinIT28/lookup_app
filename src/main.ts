@@ -11,7 +11,11 @@ import bodyParser = require('body-parser');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: true,
+    origin: [
+      'http://localhost:3000',
+      'https://lookup-app-frontend.vercel.app',
+      'https://provinces.open-api.vn',
+    ],
     credentials: true,
   });
   app.use(
