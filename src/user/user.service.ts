@@ -146,24 +146,27 @@ export class UserService {
     }
   }
 
-  // async editUser(userId: string, userData: UpdateUserDto) {
-  //     try {
-  //         const user = await this.userModel.findById(userId).select("-hashPassword");
-  //         if (user) {
-  //             user.name = userData.name;
-  //             user.categoryBusiness = userData.categoryBusiness;
-  //             user.phoneNumber = userData.phoneNumber;
-  //             user.ward = userData.address;
-  //             if (userData.image && user.image !== userData.image) {
-  //                 user.image = (await this.cloudinaryService.convertImagesCloudinary(userData.image))
-  //             }
-  //             this.userGateway.handleUpdateUser(user);
-  //             return await user.save();
-  //         } else {
-  //             throw Error("User not found")
-  //         }
-  //     } catch (error) {
-  //         throw error
-  //     }
-  // }
+  async editUser(userId: string, userData: UpdateUserDto) {
+    try {
+      const user = await this.userModel
+        .findById(userId)
+        .select('-hashPassword');
+      if (user) {
+        user.name = userData.name;
+        user.categoryBusiness = userData.categoryBusiness;
+        user.phoneNumber = userData.phoneNumber;
+        user.ward = userData.address;
+        if (userData.image && user.image !== userData.image) {
+          user.image = await this.cloudinaryService.convertImagesCloudinary(
+            userData.image,
+          );
+        }
+        return await user.save();
+      } else {
+        throw Error('User not found');
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 }
